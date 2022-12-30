@@ -5,13 +5,17 @@ const client = new net.Socket();
 
 const readlineInterface = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 });
 
 client.connect(4000, "127.0.0.1", () => {
   console.log("Conectou");
 
-  readlineInterface.addListener("line", (line) => client.write(line));
+  readlineInterface.addListener("line", (line) => {
+    client.write(line);
+    readline.moveCursor(process.stdout, 0, -1);
+    readline.clearScreenDown(process.stdout);
+  });
 
   client.on("data", (data) => {
     const receivedMessage = data.toString();

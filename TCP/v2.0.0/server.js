@@ -11,9 +11,7 @@ let clients = [];
 const broadcastToClients = (message, sender) => {
   const normalizedMessage = `${sender.name}: ${message}`;
 
-  clients.forEach((client) => {
-    if (client !== sender) client.write(normalizedMessage);
-  });
+  clients.forEach((client) => client.write(normalizedMessage));
 
   console.log(normalizedMessage);
 };
