@@ -1,0 +1,1 @@
+A simple calculator application implemented using both, TCP/IP, and UDP/IP protocols.
