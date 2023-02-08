@@ -1,5 +1,5 @@
-const { unmarshaller } = require("./unmarshaller");
-const { marshaller } = require("./marshaller");
+const { unmarshaller } = require("../../serverUnmarshaller");
+const { marshaller } = require("../../serverMarshaller");
 
 const handleConnection = (socket, handleOperation) => {
   const socketName = socket.remoteAddress + ":" + socket.remotePort;

@@ -1,5 +1,4 @@
-const { marshaller } = require("./marshaller");
-const { unmarshaller } = require("./unmarshaller");
+const { marshaller } = require("../../clientMarshaller");
 
 const handleConnection = (socket, operation, arguments) => {
   const message = marshaller(operation, arguments);

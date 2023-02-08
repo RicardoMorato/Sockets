@@ -1,4 +1,4 @@
-const { operationIds } = require("../../utils");
+const { operationIds } = require("./utils");
 
 const marshaller = (operation, arguments) => {
   const array = new Uint16Array(3);
