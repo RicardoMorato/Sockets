@@ -1,20 +1,18 @@
-const net = require("net");
 const readline = require("readline");
+const dgram = require("dgram");
 
 const { handleFormatOperation } = require("../../utils");
-const { handleConnection } = require("./clientInvoker");
 const { unmarshaller } = require("../../clientUnmarshaller");
-
-const client = new net.Socket();
+const { handleConnection } = require("./clientInvoker");
 
 const readlineInterface = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-client.connect(4000, "127.0.0.1", () => {
-  console.log("Conexão iniciada ✅\n");
+const client = dgram.createSocket("udp4");
 
+client.connect(4000, "localhost", () => {
   readlineInterface.addListener("line", (line) => {
     const { error, errorMessage, operation, arguments } =
       handleFormatOperation(line);
@@ -22,10 +20,14 @@ client.connect(4000, "127.0.0.1", () => {
     if (error) console.log(errorMessage);
     else handleConnection(client, operation, arguments);
   });
+});
 
-  client.on("data", (data) => {
-    const receivedResult = unmarshaller(data);
+client.on("error", (err) => {
+  console.error(`The client has thrown the following error: ${err}`);
+  client.close();
+});
 
-    console.log(`A calculadora diz: ${receivedResult}\n`);
-  });
+client.on("message", (msg) => {
+  const result = unmarshaller(msg);
+  console.log(`🤖: ${result}`);
 });
