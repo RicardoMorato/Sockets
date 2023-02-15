@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package calculatorPackage;
+
+service Calculator {
+  rpc add(Params) returns (Result);
+  rpc sub(Params) returns (Result);
+  rpc mult(Params) returns (Result);
+  rpc divide(Params) returns (Result);
+}
+
+message Params {
+  int32 firstNumber = 1;
+  int32 secondNumber = 2;
+}
+
+message Result {
+  int32 result = 1;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "grpc-example",
+  "version": "1.0.0",
+  "description": "Simple gRPC example for a calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RicardoMorato/SocketsAndProtocols.git"
+  },
+  "keywords": [
+    "grpc",
+    "rpc"
+  ],
+  "author": "Ricardo Morato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RicardoMorato/SocketsAndProtocols/issues"
+  },
+  "homepage": "https://github.com/RicardoMorato/SocketsAndProtocols#readme",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.7.5",
+    "grpc": "^1.24.11"
+  }
+}
